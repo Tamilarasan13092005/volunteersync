@@ -5,7 +5,8 @@
   "main": "e2e_test.js",
   "scripts": {
     "test:real": "node e2e_test.js",
-    "test:simulate": "node run_simulator.js"
+    "test:simulate": "node run_simulator.js",
+    "test": "npm run test:simulate"
   },
   "dependencies": {
     "webdriverio": "^8.39.0",

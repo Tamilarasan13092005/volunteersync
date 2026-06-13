@@ -26,9 +26,10 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+build/
 .dart_tool/
-# We track build outputs except the web build
-/build/web/
+.packages
+selenium_tests/node_modules/
 /coverage/
 
 # Symbolication related

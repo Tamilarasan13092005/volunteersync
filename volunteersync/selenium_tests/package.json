@@ -6,7 +6,8 @@
   "scripts": {
     "test:real": "node e2e_test.js",
     "test:simulate": "node run_simulator.js",
-    "test:simulate:fail": "node run_simulator.js --fail"
+    "test:simulate:fail": "node run_simulator.js --fail",
+    "test": "npm run test:simulate"
   },
   "dependencies": {
     "selenium-webdriver": "^4.21.0",

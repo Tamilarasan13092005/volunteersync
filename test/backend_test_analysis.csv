@@ -1,0 +1,10 @@
+Backend Component,Integration Area,Security/Func Check,Status,Findings/Details
+Supabase Database,Volunteers Table,Direct read/write access,FAIL (RISK),No Row-Level Security (RLS) policies detected. Client can directly read/write tables.
+Supabase Database,Events Table,Direct read/write access,FAIL (RISK),No Row-Level Security (RLS) policies detected. Client can directly read/write tables.
+Supabase Database,Attendance Table,Direct read/write access,FAIL (RISK),No Row-Level Security (RLS) policies detected. Client can directly read/write tables.
+Supabase Database,Profiles Table,Direct read/write access,FAIL (RISK),No Row-Level Security (RLS) policies detected. Client can directly read/write tables.
+Supabase Auth,User Registration,Admin role assignment,FAIL (RISK),Client assigns 'role: admin' on sign-in/register directly. Bypassable by spoofing request payload.
+Supabase Auth,Credentials Management,Demo account password leaks,FAIL (RISK),Demo credentials published in codebase ('password123') in README.
+Supabase Connection,API Keys,Hardcoded Anon Key,FAIL (RISK),Supabase anon public key is hardcoded in lib/main.dart. Publicly exposed.
+Volt AI Assistant,Edge Functions / API,Chat queries processing,PASS,Prompt suggestions and chatbot processing worked successfully during client simulation.
+Volt AI Assistant,Reports API,Attendance Report generation,PASS,Markdown structured reports are generated successfully.

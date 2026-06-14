@@ -1,0 +1,19 @@
+Test Suite,Module/Screen,Total Cases,Passed,Failed,Pass Rate,Verdict
+Selenium Web E2E,Landing Page,10,10,0,100%,PASSED
+Selenium Web E2E,Auth / Login,14,14,0,100%,PASSED
+Selenium Web E2E,Auth / Register & Forgot Password,6,6,0,100%,PASSED
+Selenium Web E2E,Dashboard,15,15,0,100%,PASSED
+Selenium Web E2E,Volunteers,15,15,0,100%,PASSED
+Selenium Web E2E,Events,12,12,0,100%,PASSED
+Selenium Web E2E,Attendance,10,10,0,100%,PASSED
+Selenium Web E2E,Reports,4,4,0,100%,PASSED
+Selenium Web E2E,AI Chat (Volt),8,8,0,100%,PASSED
+Selenium Web E2E,Settings & Logout,6,6,0,100%,PASSED
+Appium Mobile E2E,Auth / Landing,4,4,0,100%,PASSED
+Appium Mobile E2E,Auth / Login & Registration,11,11,0,100%,PASSED
+Appium Mobile E2E,Dashboard Metrics & Charts,15,15,0,100%,PASSED
+Appium Mobile E2E,Volunteers Module,20,20,0,100%,PASSED
+Appium Mobile E2E,Events Module,15,15,0,100%,PASSED
+Appium Mobile E2E,Attendance Tracking & Records,15,15,0,100%,PASSED
+Appium Mobile E2E,Volt AI Assistant Chat,10,10,0,100%,PASSED
+Appium Mobile E2E,Settings & Preferences,10,10,0,100%,PASSED

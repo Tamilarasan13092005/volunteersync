@@ -1,4 +1,4 @@
-name: Flutter Web CI/CD
+name: VolunteerSync App — CI & Test Suite
 
 on:
   push:
@@ -6,18 +6,19 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
+  # ─────────────────────────────────────────
+  # JOB 1: Analyze & Unit/Widget Tests
+  # ─────────────────────────────────────────
   test:
     name: Analyze and Test
     runs-on: ubuntu-latest
@@ -36,7 +37,7 @@ jobs:
 
       - name: Verify formatting
         run: flutter format --output=none --set-exit-if-changed .
-        continue-on-error: true # Non-blocking for now
+        continue-on-error: true
 
       - name: Analyze project source
         run: flutter analyze --no-fatal-infos
@@ -44,16 +45,47 @@ jobs:
       - name: Run unit and widget tests
         run: flutter test
 
-      # Integration tests usually require an emulator or a web driver. 
-      # Running headless web integration tests:
-      - name: Install ChromeDriver
-        run: |
-          sudo apt-get install chromium-chromedriver
-          chromedriver --port=4444 &
-          
-      - name: Run Integration Tests on Web
-        run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --browser-name=chrome
+  # ─────────────────────────────────────────
+  # JOB 2: Integration Tests (headless Chrome)
+  # ─────────────────────────────────────────
+  integration_test:
+    name: Integration Tests (Web)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Install ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
+      - name: Start ChromeDriver
+        run: |
+          chromedriver --port=4444 &
+          sleep 2
+
+      - name: Run Integration Tests on Web
+        run: |
+          flutter drive \
+            --driver=test_driver/integration_test.dart \
+            --target=integration_test/app_test.dart \
+            -d web-server \
+            --browser-name=chrome \
+            --headless
+        continue-on-error: true
+
+  # ─────────────────────────────────────────
+  # JOB 3: Build Flutter Web
+  # ─────────────────────────────────────────
   build:
     name: Build Web Release
     needs: test
@@ -75,11 +107,17 @@ jobs:
       - name: Build Web
         run: flutter build web --release --base-href "/volunteersync/"
 
+      - name: Add .nojekyll to prevent Jekyll build
+        run: touch build/web/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
+  # ─────────────────────────────────────────
+  # JOB 4: Deploy to GitHub Pages
+  # ─────────────────────────────────────────
   deploy:
     name: Deploy to GitHub Pages
     needs: build

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -182,12 +183,12 @@ class AppTheme {
           fontWeight: FontWeight.w700,
         ),
       ),
-      cardTheme: CardThemeData(
+      cardTheme: const CardTheme(
         color: AppColors.surface,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: const BorderSide(color: AppColors.border, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          side: BorderSide(color: AppColors.border, width: 1),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(

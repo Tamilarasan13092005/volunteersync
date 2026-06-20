@@ -25,7 +25,7 @@ class LandingScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.primary.withValues(alpha: 0.18),
+                  AppColors.primary.withOpacity(0.18),
                   Colors.transparent,
                 ]),
               ),
@@ -40,7 +40,7 @@ class LandingScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.secondary.withValues(alpha: 0.14),
+                  AppColors.secondary.withOpacity(0.14),
                   Colors.transparent,
                 ]),
               ),
@@ -103,10 +103,10 @@ class LandingScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 14, vertical: 7),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.12),
+                        color: AppColors.primary.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(99),
                         border: Border.all(
-                            color: AppColors.primary.withValues(alpha: 0.3)),
+                            color: AppColors.primary.withOpacity(0.3)),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -354,11 +354,11 @@ class LandingScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _StatPill('247+', 'Volunteers'),
+                              _statPill('247+', 'Volunteers'),
                               _vDivider(),
-                              _StatPill('32', 'Events'),
+                              _statPill('32', 'Events'),
                               _vDivider(),
-                              _StatPill('94%', 'Attendance'),
+                              _statPill('94%', 'Attendance'),
                             ],
                           ),
                         ],
@@ -451,7 +451,7 @@ class LandingScreen extends StatelessWidget {
         color: AppColors.border,
       );
 
-  Widget _StatPill(String val, String label) => Column(
+  Widget _statPill(String val, String label) => Column(
         children: [
           Text(val,
               style: const TextStyle(
@@ -526,7 +526,7 @@ class _SectionCard extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha: 0.15),
+              color: iconColor.withOpacity(0.15),
               borderRadius: BorderRadius.circular(11),
             ),
             child: Icon(icon, color: iconColor, size: 20),

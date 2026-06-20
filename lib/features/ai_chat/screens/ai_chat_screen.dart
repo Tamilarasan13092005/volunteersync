@@ -16,7 +16,6 @@ class AiChatScreen extends StatefulWidget {
 class _AiChatScreenState extends State<AiChatScreen> {
   final _inputCtrl = TextEditingController();
   final _scrollCtrl = ScrollController();
-  bool _inputFocused = false;
 
   @override
   void initState() {
@@ -143,7 +142,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
           controller: _inputCtrl,
           onSend: _send,
           isLoading: chat.isTyping,
-          onFocusChange: (v) => setState(() => _inputFocused = v),
+          onFocusChange: (_) {},
         ),
       ],
     );
@@ -260,7 +259,7 @@ class _ChatSidebar extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.15),
+                      color: AppColors.primary.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Icon(Icons.add_rounded,
@@ -285,7 +284,7 @@ class _ChatSidebar extends StatelessWidget {
                         horizontal: 12, vertical: 10),
                     decoration: BoxDecoration(
                       color: isActive
-                          ? AppColors.primary.withValues(alpha: 0.12)
+                          ? AppColors.primary.withOpacity(0.12)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(11),
                     ),
@@ -354,7 +353,7 @@ class _WelcomeState extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.3),
+                    color: AppColors.primary.withOpacity(0.3),
                     blurRadius: 24,
                     offset: const Offset(0, 8),
                   ),
@@ -493,7 +492,7 @@ class _MessageBubble extends StatelessWidget {
               width: 34,
               height: 34,
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.2),
+                color: AppColors.primary.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Icon(Icons.person_rounded,
@@ -601,7 +600,7 @@ class _MarkdownText extends StatelessWidget {
                   width: 20,
                   height: 20,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.2),
+                    color: AppColors.primary.withOpacity(0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -739,7 +738,7 @@ class _TypingIndicatorState extends State<_TypingIndicator>
                     width: 7,
                     height: 7,
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.3 + t * 0.7),
+                      color: AppColors.primary.withOpacity(0.3 + t * 0.7),
                       shape: BoxShape.circle,
                     ),
                   );
@@ -859,7 +858,7 @@ class _InputBarState extends State<_InputBar> {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: _focus.hasFocus
-                      ? AppColors.primary.withValues(alpha: 0.5)
+                      ? AppColors.primary.withOpacity(0.5)
                       : AppColors.border,
                 ),
               ),

@@ -202,7 +202,7 @@ class _AddEventDialogState extends State<_AddEventDialog> {
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                initialValue: _category,
+                value: _category,
                 dropdownColor: AppColors.surface,
                 style: const TextStyle(color: AppColors.textPrimary),
                 decoration: const InputDecoration(labelText: 'Category'),
@@ -307,7 +307,7 @@ class _EventCard extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: catColor.withValues(alpha: 0.15),
+                    color: catColor.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(11),
                   ),
                   child: Icon(Icons.event_rounded, color: catColor, size: 20),

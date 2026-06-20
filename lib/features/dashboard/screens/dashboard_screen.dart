@@ -105,8 +105,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         // Stat cards
                         if (dash.stats != null) ...[
                           isMobile
-                              ? _MobileStatGrid(stats: dash.stats!)
-                              : _DesktopStatRow(stats: dash.stats!),
+                              ? _MobileStatGrid(stats: dash.stats)
+                              : _DesktopStatRow(stats: dash.stats),
                           const SizedBox(height: 28),
                         ],
 
@@ -169,7 +169,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 }
 
 class _MobileStatGrid extends StatelessWidget {
-  final stats;
+  final dynamic stats;
   const _MobileStatGrid({required this.stats});
 
   @override
@@ -220,7 +220,7 @@ class _MobileStatGrid extends StatelessWidget {
 }
 
 class _DesktopStatRow extends StatelessWidget {
-  final stats;
+  final dynamic stats;
   const _DesktopStatRow({required this.stats});
 
   @override
@@ -283,12 +283,12 @@ class _AIInsightsBanner extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.primary.withValues(alpha: 0.15),
-            AppColors.secondary.withValues(alpha: 0.1),
+            AppColors.primary.withOpacity(0.15),
+            AppColors.secondary.withOpacity(0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
+        border: Border.all(color: AppColors.primary.withOpacity(0.2)),
       ),
       child: Row(
         children: [
@@ -573,7 +573,7 @@ class _ActivityItem extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: c.withValues(alpha: 0.12),
+              color: c.withOpacity(0.12),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(_icon(type), color: c, size: 17),

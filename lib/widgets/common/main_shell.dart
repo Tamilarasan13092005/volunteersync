@@ -22,39 +22,30 @@ class _MainShellState extends State<MainShell> {
     const _NavItem(
         icon: Icons.dashboard_rounded,
         label: 'Dashboard',
-        route: AppRouter.dashboard,
-        key: Key('nav_dashboard')),
+        route: AppRouter.dashboard),
     const _NavItem(
         icon: Icons.people_rounded,
         label: 'Volunteers',
-        route: AppRouter.volunteers,
-        key: Key('nav_volunteers')),
+        route: AppRouter.volunteers),
     const _NavItem(
-        icon: Icons.event_rounded,
-        label: 'Events',
-        route: AppRouter.events,
-        key: Key('nav_events')),
+        icon: Icons.event_rounded, label: 'Events', route: AppRouter.events),
     const _NavItem(
         icon: Icons.fact_check_rounded,
         label: 'Attendance',
-        route: AppRouter.attendance,
-        key: Key('nav_attendance')),
+        route: AppRouter.attendance),
     const _NavItem(
         icon: Icons.analytics_rounded,
         label: 'Reports',
-        route: AppRouter.reports,
-        key: Key('nav_reports')),
+        route: AppRouter.reports),
     const _NavItem(
         icon: Icons.auto_awesome_rounded,
         label: 'AI Assistant',
         route: AppRouter.aiChat,
-        isPrimary: true,
-        key: Key('nav_ai_chat')),
+        isPrimary: true),
     const _NavItem(
         icon: Icons.settings_rounded,
         label: 'Settings',
-        route: AppRouter.settings,
-        key: Key('nav_settings')),
+        route: AppRouter.settings),
   ];
 
   @override
@@ -166,7 +157,7 @@ class _Sidebar extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 18,
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.2),
+                  backgroundColor: AppColors.primary.withOpacity(0.2),
                   child: Text(
                     AppUtils.initials(auth.user?.name ?? 'U'),
                     style: const TextStyle(
@@ -260,7 +251,6 @@ class _SidebarItem extends StatelessWidget {
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
-          key: item.key,
           onTap: onTap,
           borderRadius: BorderRadius.circular(12),
           child: AnimatedContainer(
@@ -273,14 +263,14 @@ class _SidebarItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               color: isActive
                   ? (item.isPrimary
-                      ? AppColors.primary.withValues(alpha: 0.15)
-                      : AppColors.primary.withValues(alpha: 0.12))
+                      ? AppColors.primary.withOpacity(0.15)
+                      : AppColors.primary.withOpacity(0.12))
                   : Colors.transparent,
               gradient: isActive && item.isPrimary
                   ? LinearGradient(
                       colors: [
-                        AppColors.primary.withValues(alpha: 0.2),
-                        AppColors.secondary.withValues(alpha: 0.15)
+                        AppColors.primary.withOpacity(0.2),
+                        AppColors.secondary.withOpacity(0.15)
                       ],
                     )
                   : null,
@@ -369,7 +359,6 @@ class _MobileShell extends StatelessWidget {
               children: mainItems.map((item) {
                 final isActive = location == item.route;
                 return GestureDetector(
-                  key: item.key,
                   onTap: () => context.go(item.route),
                   child: AnimatedContainer(
                     duration: AppConstants.durationFast,
@@ -377,7 +366,7 @@ class _MobileShell extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
                       color: isActive
-                          ? AppColors.primary.withValues(alpha: 0.15)
+                          ? AppColors.primary.withOpacity(0.15)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -421,12 +410,10 @@ class _NavItem {
   final String label;
   final String route;
   final bool isPrimary;
-  final Key? key;
   const _NavItem({
     required this.icon,
     required this.label,
     required this.route,
     this.isPrimary = false,
-    this.key,
   });
 }

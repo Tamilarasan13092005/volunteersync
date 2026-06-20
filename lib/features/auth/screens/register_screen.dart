@@ -73,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.secondary.withValues(alpha: 0.1),
+                  AppColors.secondary.withOpacity(0.1),
                   Colors.transparent,
                 ]),
               ),
@@ -191,7 +191,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             prefixIcon: const Icon(Icons.lock_outline_rounded,
                                 color: AppColors.textMuted, size: 20),
                             suffixIcon: IconButton(
-                              key: const Key('register_password_toggle'),
                               onPressed: () =>
                                   setState(() => _obscure = !_obscure),
                               icon: Icon(
@@ -212,7 +211,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         // Terms
                         GestureDetector(
-                          key: const Key('register_terms_checkbox'),
                           onTap: () => setState(() => _agreed = !_agreed),
                           child: Row(
                             children: [
@@ -270,7 +268,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           style: TextStyle(
                               color: AppColors.textMuted, fontSize: 14)),
                       GestureDetector(
-                        key: const Key('signin_link'),
                         onTap: () => context.go(AppRouter.login),
                         child: const Text('Sign in',
                             style: TextStyle(

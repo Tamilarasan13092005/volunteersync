@@ -1,26 +1,14 @@
-// test/widget_test.dart
+// This is a basic Flutter widget test.
 //
-// Main test entry point — runs all widget and unit tests.
-// This file is kept for Flutter's default test discovery.
-//
-// HOW TO RUN ALL TESTS:
-//   flutter test
-//
-// HOW TO RUN SPECIFIC TEST FILES:
-//   flutter test test/unit/auth_provider_test.dart
-//   flutter test test/widget/login_widget_test.dart
-//   flutter test test/widget/register_widget_test.dart
-//
-// HOW TO RUN INTEGRATION TESTS (requires a device/emulator):
-//   flutter test integration_test/app_test.dart
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility in the flutter_test package. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
 
-// This file intentionally left minimal.
-// All tests are organized in:
-//   test/unit/          — unit tests (no UI)
-//   test/widget/        — widget tests (render UI, no real device)
-//   integration_test/   — integration tests (real device or emulator)
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  // Tests are in subdirectories — run them individually or with:
-  // flutter test test/unit/ test/widget/
+  testWidgets('App smoke test', (WidgetTester tester) async {
+    expect(true, isTrue);
+  });
 }

@@ -282,7 +282,7 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   void _useMockData() {
-    _stats = DashboardStats(
+    _stats = const DashboardStats(
       totalVolunteers: 48,
       activeVolunteers: 36,
       totalEvents: 12,

@@ -2,8 +2,8 @@ config:
   target: "https://tamilarasan13092005.supabase.co" # Default, can be overridden by environment variable
   phases:
     - duration: 60
-      arrivalCount: 100
-      name: "100 VUs over 1 minute"
+      arrivalCount: 250
+      name: "250 VUs over 1 minute"
   environments:
     production:
       target: "{{ $processEnvironment.SUPABASE_URL }}"

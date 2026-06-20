@@ -25,7 +25,7 @@ class LandingScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.primary.withValues(alpha:  0.18),
+                  AppColors.primary.withOpacity(0.18),
                   Colors.transparent,
                 ]),
               ),
@@ -40,7 +40,7 @@ class LandingScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.secondary.withValues(alpha:  0.14),
+                  AppColors.secondary.withOpacity(0.14),
                   Colors.transparent,
                 ]),
               ),
@@ -103,10 +103,10 @@ class LandingScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 14, vertical: 7),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha:  0.12),
+                        color: AppColors.primary.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(99),
                         border: Border.all(
-                            color: AppColors.primary.withValues(alpha:  0.3)),
+                            color: AppColors.primary.withOpacity(0.3)),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -526,7 +526,7 @@ class _SectionCard extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha:  0.15),
+              color: iconColor.withOpacity(0.15),
               borderRadius: BorderRadius.circular(11),
             ),
             child: Icon(icon, color: iconColor, size: 20),

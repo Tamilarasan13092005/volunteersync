@@ -351,7 +351,7 @@ class _VolunteerDetailSheet extends StatelessWidget {
                                     horizontal: 12, vertical: 6),
                                 decoration: BoxDecoration(
                                   color:
-                                      AppColors.primary.withValues(alpha:  0.12),
+                                      AppColors.primary.withOpacity(0.12),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(s,

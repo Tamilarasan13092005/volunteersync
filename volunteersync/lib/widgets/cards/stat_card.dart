@@ -52,8 +52,8 @@ class StatCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: changePositive
-                        ? AppColors.accent2.withValues(alpha:  0.15)
-                        : AppColors.accent4.withValues(alpha:  0.15),
+                        ? AppColors.accent2.withOpacity(0.15)
+                        : AppColors.accent4.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
@@ -154,7 +154,7 @@ class KpiCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
                 value: progressValue,
-                backgroundColor: color.withValues(alpha:  0.15),
+                backgroundColor: color.withOpacity(0.15),
                 valueColor: AlwaysStoppedAnimation<Color>(color),
                 minHeight: 4,
               ),

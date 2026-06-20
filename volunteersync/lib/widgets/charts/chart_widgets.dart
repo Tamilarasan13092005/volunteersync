@@ -74,8 +74,8 @@ class VolunteerGrowthChart extends StatelessWidget {
               show: true,
               gradient: LinearGradient(
                 colors: [
-                  AppColors.primary.withValues(alpha:  0.25),
-                  AppColors.primary.withValues(alpha:  0.0),
+                  AppColors.primary.withOpacity(0.25),
+                  AppColors.primary.withOpacity(0.0),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -157,7 +157,7 @@ class AttendanceBarChart extends StatelessWidget {
               ),
               BarChartRodData(
                 toY: absent,
-                color: AppColors.accent4.withValues(alpha:  0.6),
+                color: AppColors.accent4.withOpacity(0.6),
                 width: 10,
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(4)),
@@ -332,8 +332,8 @@ class HoursLineChart extends StatelessWidget {
               show: true,
               gradient: LinearGradient(
                 colors: [
-                  AppColors.secondary.withValues(alpha:  0.2),
-                  AppColors.secondary.withValues(alpha:  0.0),
+                  AppColors.secondary.withOpacity(0.2),
+                  AppColors.secondary.withOpacity(0.0),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

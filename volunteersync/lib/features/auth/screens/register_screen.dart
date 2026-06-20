@@ -73,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(colors: [
-                  AppColors.secondary.withValues(alpha:  0.1),
+                  AppColors.secondary.withOpacity(0.1),
                   Colors.transparent,
                 ]),
               ),

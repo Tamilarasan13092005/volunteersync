@@ -436,7 +436,7 @@ class _TopVolunteersTable extends StatelessWidget {
                       height: 24,
                       decoration: BoxDecoration(
                         color: rank == 1
-                            ? AppColors.accent3.withValues(alpha: 0.2)
+                            ? AppColors.accent3.withOpacity(0.2)
                             : AppColors.surfaceElevated,
                         shape: BoxShape.circle,
                       ),

@@ -1,66 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
+    Flutter Web — index.html
+    The /volunteersync-app/ placeholder is automatically replaced by
+    `flutter build web --base-href /your-repo/` during the build.
   -->
-  <base href="/volunteersync/">
-
-  <!-- Single Page Apps for GitHub Pages -->
-  <script type="text/javascript">
-    (function(l) {
-      if (l.search[1] === 'p' && l.search[2] === '=') {
-        var q = {};
-        l.search.slice(1).split('&').forEach(function(v) {
-          var a = v.split('=');
-          q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-        });
-        if (q.p !== undefined) {
-          window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + (q.p || '') +
-            (q.q ? ('?' + q.q) : '') +
-            l.hash
-          );
-        }
-      }
-    }(window.location));
-  </script>
+  <base href="/volunteersync-app/">
 
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A premium volunteer management SaaS platform with AI capabilities.">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <!-- iOS meta tags & icons -->
+  <!-- ── SEO Meta Tags ──────────────────────────────────────────────────── -->
+  <title>VolunteerSync — Premium Volunteer Management Platform</title>
+  <meta name="description" content="VolunteerSync is a premium AI-powered volunteer management SaaS platform. Coordinate volunteers, manage events, track attendance, and gain insights with real-time analytics.">
+  <meta name="keywords" content="volunteer management, nonprofit software, volunteer coordination, event management, attendance tracking">
+  <meta name="author" content="VolunteerSync">
+  <meta name="robots" content="index, follow">
+
+  <!-- ── Open Graph (Social Sharing) ───────────────────────────────────── -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VolunteerSync — Premium Volunteer Management Platform">
+  <meta property="og:description" content="Coordinate volunteers, manage events, and gain real-time insights with VolunteerSync.">
+  <meta property="og:image" content="icons/Icon-512.png">
+
+  <!-- ── PWA / iOS Meta Tags ────────────────────────────────────────────── -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="volunteersync">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VolunteerSync">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <!-- ── Theme Color ────────────────────────────────────────────────────── -->
+  <meta name="theme-color" content="#0D0F14">
 
-  <title>volunteersync</title>
+  <!-- ── Favicon & Manifest ─────────────────────────────────────────────── -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="manifest" href="manifest.json">
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       SPA ROUTING FIX FOR GITHUB PAGES
+       When a user refreshes /dashboard, GitHub Pages returns 404.html.
+       The 404.html page encodes the URL into a query param and redirects
+       back to index.html. This script decodes it and restores the URL
+       using the HTML5 History API so Flutter's GoRouter sees the right path.
+       ══════════════════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
+
+  <!-- ── Flutter Loading Splash ─────────────────────────────────────────── -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #0D0F14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    #flutter-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    #flutter-loading .logo {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #6C63FF, #48C6EF);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(108, 99, 255, 0.35);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    #flutter-loading .logo svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+
+    #flutter-loading .brand {
+      color: #F1F3F9;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    #flutter-loading .subtitle {
+      color: #7B8BA4;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    #flutter-loading .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(108, 99, 255, 0.2);
+      border-top-color: #6C63FF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(108, 99, 255, 0.35); }
+      50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(108, 99, 255, 0.5); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <!-- Splash screen visible while Flutter loads -->
+  <div id="flutter-loading">
+    <div class="logo">
+      <!-- Hub / network icon (matches Flutter app icon) -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C10.34 2 9 3.34 9 5c0 .92.4 1.75 1.03 2.33L7.07 10.3A2.99 2.99 0 0 0 6 10c-1.66 0-3 1.34-3 3s1.34 3 3 3c.53 0 1.02-.15 1.44-.4l3.28 3.28A2.99 2.99 0 0 0 9 20c0 1.66 1.34 3 3 3s3-1.34 3-3c0-.53-.14-1.02-.38-1.44l3.28-3.28c.42.25.91.4 1.44.4 1.66 0 3-1.34 3-3s-1.34-3-3-3c-.36 0-.7.07-1.02.18l-2.97-2.97A2.96 2.96 0 0 0 15 5c0-1.66-1.34-3-3-3z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand">VolunteerSync</div>
+      <div class="subtitle">Volunteer Management Platform</div>
+    </div>
+    <div class="spinner"></div>
+  </div>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
+  <!--
+    flutter_bootstrap.js is generated by `flutter build web`.
+    It loads the Flutter engine and your compiled Dart code.
   -->
   <script src="flutter_bootstrap.js" async></script>
+
+  <!-- Hide the loading splash once Flutter renders -->
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var loading = document.getElementById('flutter-loading');
+      if (loading) {
+        loading.style.transition = 'opacity 0.4s ease';
+        loading.style.opacity = '0';
+        setTimeout(function () { loading.style.display = 'none'; }, 400);
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,13 +1,14 @@
 {
-    "name": "volunteersync",
-    "short_name": "volunteersync",
+    "name": "VolunteerSync",
+    "short_name": "VolunteerSync",
+    "description": "Premium AI-powered volunteer management SaaS platform. Coordinate volunteers, manage events, track attendance, and gain real-time insights.",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#0D0F14",
+    "theme_color": "#6C63FF",
+    "orientation": "any",
     "prefer_related_applications": false,
+    "categories": ["productivity", "business"],
     "icons": [
         {
             "src": "icons/Icon-192.png",

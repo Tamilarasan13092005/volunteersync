@@ -1,29 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>volunteersync</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment.
-      
-      // We assume this is deployed to a repo subdirectory (username.github.io/volunteersync)
-      var pathSegmentsToKeep = 1; 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VolunteerSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
-    </script>
-  </head>
-  <body>
-  </body>
+  <!--
+    ══════════════════════════════════════════════════════════════════════════
+    GITHUB PAGES — SPA ROUTING FIX
+    ══════════════════════════════════════════════════════════════════════════
+
+    PROBLEM:
+      GitHub Pages only knows about the root index.html.
+      When a user refreshes a route like /dashboard or /volunteers,
+      GitHub Pages can't find that file and returns a 404 error.
+
+    SOLUTION:
+      1. GitHub Pages serves THIS 404.html for any unknown path.
+      2. This page reads the current URL path (/dashboard) and stores it
+         in sessionStorage, then immediately redirects to index.html.
+      3. index.html has a script that reads sessionStorage and uses
+         history.replaceState() to restore the original path.
+      4. Flutter's GoRouter then sees /dashboard and routes correctly.
+
+    This is the industry-standard SPA (Single Page Application) routing
+    fix for GitHub Pages.
+    ══════════════════════════════════════════════════════════════════════════
+  -->
+  <script>
+    // Step 1: Calculate how many path segments to keep.
+    // For GitHub Pages with a repo sub-path (e.g., /volunteersync-app/),
+    // segmentsToKeep = 1. For root domain, use 0.
+    var segmentsToKeep = 1;
+
+    // Step 2: Build the redirect URL.
+    // We encode the path + query + hash into a single query parameter
+    // so that index.html can decode it and restore navigation.
+    var l = window.location;
+    var redirectUrl = l.protocol + '//' + l.hostname +
+      (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + segmentsToKeep).join('/') +
+      '/?p=/' +
+      l.pathname.slice(1).split('/').slice(segmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash;
+
+    // Step 3: Store the intended path in sessionStorage.
+    sessionStorage.redirect = redirectUrl;
+
+    // Step 4: Redirect to the root index.html which will restore the path.
+    l.replace(redirectUrl);
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0D0F14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .msg {
+      color: #7B8BA4;
+      font-size: 14px;
+      text-align: center;
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(108,99,255,0.2);
+      border-top-color: #6C63FF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="msg">
+    <div class="spinner"></div>
+    <p>Redirecting to VolunteerSync…</p>
+  </div>
+</body>
 </html>
